@@ -15,7 +15,8 @@ The images from RGB to HLS color space as yellow and white colors were clearly r
 * Use cv2.bitwise_or to combine these two binary masks.
 * Use cv2.bitwise_and to apply the combined mask onto the original RGB image
 
-```def select_rgb_white_yellow(image): 
+```
+def select_rgb_white_yellow(image): 
     hls_image = cv2.cvtColor(image, cv2.COLOR_RGB2HLS)
 
     white_mask = cv2.inRange(hls_image, np.uint8([20,200,0]), np.uint8([255,255,255])) 
@@ -48,7 +49,8 @@ def canny(img, low_threshold, high_threshold):
 ## Region of Interest Selection
 The image mask is applied to only the region defined by the polygon formed from the vertices. The rest of the image is set to black.
 
-```def region_of_interest(img, vertices):
+```
+def region_of_interest(img, vertices):
     #defining a blank mask to start with
     mask = np.zeros_like(img)   
     
@@ -84,7 +86,8 @@ The following parameters need to be adjusted accordingly:
 ## Line Extrapolation
 We have lane lines: one for the left and the other for the right. The left lane has a positive slope, and the right lane has a negative slope. We find the average of the left and right slopes and intercepts to get an average of the lanes. Calculate the weighted average of the slopes and intercepts based on the length of the line segment.
 
-```def avg_slope_intercept(lines):
+```
+def avg_slope_intercept(lines):
     left_lines = np.empty([1,3])
     right_lines = np.empty([1,3])
     
@@ -122,13 +125,15 @@ We have lane lines: one for the left and the other for the right. The left lane 
 
 The average is quite sensitive to outliers. So adjust for the outliers by removing points that were greater than 1.5 standard deviations from the rest of the slopes.
 
-```# remove outliers
+```
+# remove outliers
 def slope_idx_close_to_avg(s, dev=1.5):
     return np.array(abs(s - np.mean(s)) < dev*np.std(s))
 ```
 To draw the lanes, convert the slope and intercept into pixel points.
 
-```def get_endpoints_from_m_b(y1, y2, line):
+```
+def get_endpoints_from_m_b(y1, y2, line):
     if line is not None:
         m, b = line
 
@@ -144,7 +149,8 @@ To draw the lanes, convert the slope and intercept into pixel points.
 
 draw_lane_lines() accepts a list of lines as a parameter. Each line is a list of 4 values (x1, y1, x2, y2).
 
-```def draw_lane_lines(img, lines):
+```
+def draw_lane_lines(img, lines):
     line_img = np.zeros_like(img)
     for line in lines:
         if line is not None:
@@ -154,7 +160,8 @@ draw_lane_lines() accepts a list of lines as a parameter. Each line is a list of
 
 For having multiple images in a single cell, we use the following:
 
-```import PIL
+```
+import PIL
 from glob import glob
 
 # Load a collection of image files with PIL
@@ -173,7 +180,8 @@ for img in np_images:
 ## Applying Lane Finding to Video Clips
 We use the above method of identifying and marking the lane lines within the image supplied on a video, which is just a sequence of images. This is defined in the following process_image() method:
 
-```def process_image(img):
+```
+def process_image(img):
     # NOTE: The output you return should be a color image (3 channel) for processing video below
     # TODO: put your pipeline here,
     # you should return the final output (image where lines are drawn on lanes)

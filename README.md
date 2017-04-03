@@ -30,7 +30,8 @@ The images from RGB to HLS color space as yellow and white colors were clearly r
 ## Gaussian Smoothing
 cv2.GaussianBlur is used to smooth out rough edges. The GaussianBlur takes a kernel_size parameter which needs to be selected appropriately. 
 
-```def gaussian_blur(img, kernel_size):
+```
+def gaussian_blur(img, kernel_size):
     """Applies a Gaussian Noise kernel"""
     return cv2.GaussianBlur(img, (kernel_size, kernel_size), 0)
 ```
@@ -38,7 +39,8 @@ cv2.GaussianBlur is used to smooth out rough edges. The GaussianBlur takes a ker
 ## Canny Edge Detection
 cv2.Canny takes two threshold values that are defined by trial and error. Canny recommended a upper:lower ratio between 2:1 and 3:1.
 
-```def canny(img, low_threshold, high_threshold):
+```
+def canny(img, low_threshold, high_threshold):
     """Applies the Canny transform"""
     return cv2.Canny(img, low_threshold, high_threshold)
 ```    

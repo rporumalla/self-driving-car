@@ -19,7 +19,7 @@ cv2.cvtColor(image, cv2.COLOR_RGB2HLS)
 
 This is described in select_rgb_white_yellow() below:
 
-`<def select_rgb_white_yellow(image): 
+```def select_rgb_white_yellow(image): 
     hls_image = cv2.cvtColor(image, cv2.COLOR_RGB2HLS)
 
     white_mask = cv2.inRange(hls_image, np.uint8([20,200,0]), np.uint8([255,255,255])) 
@@ -28,5 +28,5 @@ This is described in select_rgb_white_yellow() below:
     # combine the mask
     mask = cv2.bitwise_or(white_mask, yellow_mask)
     masked = cv2.bitwise_and(image, image, mask = mask)
-    return masked>`
+    return masked```
      

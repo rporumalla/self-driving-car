@@ -28,5 +28,6 @@ This is described in select_rgb_white_yellow() below:
     # combine the mask
     mask = cv2.bitwise_or(white_mask, yellow_mask)
     masked = cv2.bitwise_and(image, image, mask = mask)
-    return masked```
+    return masked
+```
      
